@@ -1,5 +1,4 @@
 import React from "react";
-import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 import { mount, shallow } from "enzyme";
 import App from "./App";
 import Preview from "./components/Preview";
