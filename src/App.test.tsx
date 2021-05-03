@@ -8,14 +8,6 @@ import ChooseColor from "./components/ChooseColor";
 import ModifyFontSize from "./components/ModifyFontSize";
 
 describe("App", () => {
-  const setState = jest.fn();
-  const useStateMock = (initState: any) => [initState, setState];
-
-  jest.spyOn(React, "useState").mockImplementation(useStateMock);
-
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
   it("renders all components", () => {
     const wrapper = shallow(<App />);
     expect(wrapper.children().length).toBe(3);
