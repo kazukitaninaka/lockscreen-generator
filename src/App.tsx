@@ -86,7 +86,7 @@ const App: FC = () => {
   return (
     <div className="grid gap-y-4">
       <Header />
-      <div id="container" className="container mx-auto px-1 grid gap-y-4">
+      <div id="container" className="container-sm mx-auto px-1 grid gap-y-4">
         <ChooseColor handleColor={handleColor} selectedColor={selectedColor} />
         <TextInput handleTextarea={handleTextarea} content={content} />
         <Preview
