@@ -51,15 +51,15 @@ const App: FC = () => {
 
     if (content) {
       let lineHeight = 1.2;
-      let yPosition = size.height * 0.3;
-      const lines = content.split("\n");
+      let yPosition = size.height * 0.8;
+      const lines = content.split("\n").sort().reverse();
       lines.forEach((line) => {
-        yPosition += fontSize * lineHeight;
+        yPosition -= fontSize * lineHeight;
         ctx.fillText(
           line,
-          size.width / 20,
+          size.width / 10,
           yPosition,
-          size.width - (size.width / 20) * 2
+          size.width - (size.width / 10) * 2
         );
       });
     }
