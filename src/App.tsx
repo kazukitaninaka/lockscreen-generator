@@ -52,7 +52,7 @@ const App: FC = () => {
     if (content) {
       let lineHeight = 1.2;
       let yPosition = size.height * 0.8;
-      const lines = content.split("\n").sort().reverse();
+      const lines = content.split("\n").reverse();
       lines.forEach((line) => {
         yPosition -= fontSize * lineHeight;
         ctx.fillText(
