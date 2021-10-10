@@ -22,7 +22,7 @@ const ChooseColor: FC<Props> = (props) => {
               htmlFor={colorName}
               className={`border p-2 text-center ${borderBlack}`}
               style={{
-                backgroundColor: color.bg,
+                backgroundColor: color.bgColor,
                 color: color.fontColor,
               }}
             >

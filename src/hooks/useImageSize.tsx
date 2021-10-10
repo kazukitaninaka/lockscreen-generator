@@ -1,23 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-type Size = {
+type ImageSize = {
   width: number;
   height: number;
 };
 
-const useImageSize = () => {
-  const [size, setSize] = useState<Size>({ width: 828, height: 1792 });
+function useCanvas(): ImageSize {
+  const [imageSize, setImageSize] = useState<ImageSize>({
+    width: 828,
+    height: 1792,
+  });
 
   useEffect(() => {
     // identify if user is using phone and set image size
     if (window.navigator.userAgent.match(/(iPhone|iPod|Android.*Mobile)/i)) {
-      setSize({
+      setImageSize({
         width: window.screen.width * 2,
         height: window.screen.height * 2,
       });
     }
   }, []);
-  return size;
-};
 
-export default useImageSize;
+  return imageSize;
+}
+
+export default useCanvas;

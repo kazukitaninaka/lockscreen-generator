@@ -17,18 +17,17 @@ const App: FC = () => {
   const [content, setContent] = useState<string>("");
 
   useEffect(() => {
-    const canvasElem = document.createElement("canvas");
-    canvasElem.width = size.width;
-    canvasElem.height = size.height;
-    const ctx = canvasElem.getContext("2d");
-
+    const canvasElm = document.createElement("canvas");
+    canvasElm.width = size.width;
+    canvasElm.height = size.height;
     const color = colorData[selectedColor as keyof typeof colorData];
+    const ctx = canvasElm.getContext("2d");
 
     // draw
-    if (!ctx || !canvasElem) return;
+    if (!ctx || !canvasElm) return;
 
     ctx.strokeStyle = color.fontColor;
-    ctx.fillStyle = color.bg;
+    ctx.fillStyle = color.bgColor;
     ctx.fillRect(0, 0, size.width, size.height);
     ctx.strokeRect(0, 0, size.width, size.height);
 
@@ -52,7 +51,7 @@ const App: FC = () => {
       });
     }
 
-    setImg(canvasElem.toDataURL());
+    setImg(canvasElm.toDataURL());
   }, [selectedColor, fontSize, content]);
 
   const handleTextarea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
