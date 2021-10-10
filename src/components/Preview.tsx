@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 import ModifyFontSize from "./ModifyFontSize";
 
-interface IProps {
+type Props = {
   increaseFontSize: (e: React.MouseEvent<HTMLButtonElement>) => void;
   decreaseFontSize: (e: React.MouseEvent<HTMLButtonElement>) => void;
   fontSize: number;
   img: string | null;
-}
-const Preview: FC<IProps> = (props) => {
+};
+const Preview: FC<Props> = (props) => {
   return (
     <div>
       <div className="grid grid-cols-2 gap-x-24">

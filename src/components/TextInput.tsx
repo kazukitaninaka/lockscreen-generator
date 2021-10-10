@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 
-interface IProps {
+type Props = {
   handleTextarea: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   content: string;
-}
+};
 
-const TextInput: FC<IProps> = (props) => {
+const TextInput: FC<Props> = (props) => {
   return (
     <div>
       <div className="font-mono text-2xl mb-2 mx-3">Text↓</div>

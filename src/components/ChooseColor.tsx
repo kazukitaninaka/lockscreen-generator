@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import { colorData } from "../data/colorData";
 
-interface IProps {
+type Props = {
   handleColor: (e: React.ChangeEvent<HTMLInputElement>) => void;
   selectedColor: string;
-}
+};
 
-const ChooseColor: FC<IProps> = (props: any) => {
+const ChooseColor: FC<Props> = (props) => {
   return (
     <div className="mb-5">
       <div className="font-mono text-2xl mb-2 mx-3">Color↓</div>

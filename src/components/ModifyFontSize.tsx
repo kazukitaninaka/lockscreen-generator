@@ -2,13 +2,13 @@ import React, { FC } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinusSquare, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 
-interface IProps {
+type Props = {
   increaseFontSize: (e: React.MouseEvent<HTMLButtonElement>) => void;
   decreaseFontSize: (e: React.MouseEvent<HTMLButtonElement>) => void;
   fontSize: number;
-}
+};
 
-const ModifyFontSize: FC<IProps> = (props) => {
+const ModifyFontSize: FC<Props> = (props) => {
   return (
     <div>
       <div className="font-mono mb-2">文字の大きさ</div>
