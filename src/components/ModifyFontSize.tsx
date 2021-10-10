@@ -1,28 +1,30 @@
-import React, { FC } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinusSquare, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 
-interface IProps {
-  increaseFontSize: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  decreaseFontSize: (e: React.MouseEvent<HTMLButtonElement>) => void;
+type Props = {
+  setFontSize: Dispatch<SetStateAction<number>>;
   fontSize: number;
-}
+};
 
-const ModifyFontSize: FC<IProps> = (props) => {
+const ModifyFontSize: FC<Props> = ({ setFontSize, fontSize }) => {
   return (
     <div>
       <div className="font-mono mb-2">文字の大きさ</div>
       <div className="flex">
-        <button onClick={props.decreaseFontSize}>
+        <button
+          onClick={() => setFontSize((prev) => prev - 1)}
+          disabled={fontSize <= 1}
+        >
           <FontAwesomeIcon icon={faMinusSquare} size="lg" />
         </button>
         <input
           type="number"
-          value={props.fontSize}
+          value={fontSize}
           readOnly
           className="text-xl mx-2 w-10 text-center"
         />
-        <button onClick={props.increaseFontSize}>
+        <button onClick={() => setFontSize((prev) => prev + 1)}>
           <FontAwesomeIcon icon={faPlusSquare} size="lg" />
         </button>
       </div>

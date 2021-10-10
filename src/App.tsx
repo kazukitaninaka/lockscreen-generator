@@ -7,40 +7,27 @@ import TextInput from "./components/TextInput";
 import Preview from "./components/Preview";
 // data
 import { colorData } from "./data/colorData";
-
-interface sizeI {
-  width: number;
-  height: number;
-}
+import useImageSize from "./hooks/useImageSize";
 
 const App: FC = () => {
   const [img, setImg] = useState<string | null>(null);
-  const [size, setSize] = useState<sizeI>({ width: 828, height: 1792 });
+  const size = useImageSize();
   const [selectedColor, setSelectedColor] = useState<string>("basic");
   const [fontSize, setFontSize] = useState<number>(50);
   const [content, setContent] = useState<string>("");
 
   useEffect(() => {
-    // identify if user is using phone and set screen size
-    if (window.navigator.userAgent.match(/(iPhone|iPod|Android.*Mobile)/i)) {
-      setSize({
-        width: window.screen.width * 2,
-        height: window.screen.height * 2,
-      });
-    }
-
-    const canvasElem = document.createElement("canvas");
-    canvasElem.width = size.width;
-    canvasElem.height = size.height;
-    const ctx = canvasElem.getContext("2d");
-
+    const canvasElm = document.createElement("canvas");
+    canvasElm.width = size.width;
+    canvasElm.height = size.height;
     const color = colorData[selectedColor as keyof typeof colorData];
+    const ctx = canvasElm.getContext("2d");
 
     // draw
-    if (!ctx || !canvasElem) return;
+    if (!ctx || !canvasElm) return;
 
     ctx.strokeStyle = color.fontColor;
-    ctx.fillStyle = color.bg;
+    ctx.fillStyle = color.bgColor;
     ctx.fillRect(0, 0, size.width, size.height);
     ctx.strokeRect(0, 0, size.width, size.height);
 
@@ -64,37 +51,19 @@ const App: FC = () => {
       });
     }
 
-    setImg(canvasElem.toDataURL());
+    setImg(canvasElm.toDataURL());
   }, [selectedColor, fontSize, content]);
-
-  const handleTextarea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
-  };
-
-  const handleColor = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedColor(e.target.value);
-  };
-
-  // handle font size
-  const increaseFontSize = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setFontSize((prev) => prev + 1);
-  };
-  const decreaseFontSize = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setFontSize((prev) => prev - 1);
-  };
 
   return (
     <div className="grid gap-y-4">
       <Header />
       <div id="container" className="container-sm mx-auto px-1 grid gap-y-4">
-        <ChooseColor handleColor={handleColor} selectedColor={selectedColor} />
-        <TextInput handleTextarea={handleTextarea} content={content} />
-        <Preview
-          increaseFontSize={increaseFontSize}
-          decreaseFontSize={decreaseFontSize}
-          fontSize={fontSize}
-          img={img}
+        <ChooseColor
+          setSelectedColor={setSelectedColor}
+          selectedColor={selectedColor}
         />
+        <TextInput setContent={setContent} content={content} />
+        <Preview setFontSize={setFontSize} fontSize={fontSize} img={img} />
       </div>
       <Footer />
     </div>

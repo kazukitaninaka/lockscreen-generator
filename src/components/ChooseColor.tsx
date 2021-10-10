@@ -1,19 +1,19 @@
-import React, { FC } from "react";
+import React, { Dispatch, FC, SetStateAction } from "react";
 import { colorData } from "../data/colorData";
 
-interface IProps {
-  handleColor: (e: React.ChangeEvent<HTMLInputElement>) => void;
+type Props = {
+  setSelectedColor: Dispatch<SetStateAction<string>>;
   selectedColor: string;
-}
+};
 
-const ChooseColor: FC<IProps> = (props: any) => {
+const ChooseColor: FC<Props> = ({ setSelectedColor, selectedColor }) => {
   return (
     <div className="mb-5">
       <div className="font-mono text-2xl mb-2 mx-3">Color↓</div>
       <div className="grid grid-cols-3 gap-1.5">
         {Object.keys(colorData).map((colorName: string) => {
           const color = colorData[colorName as keyof typeof colorData];
-          const isSelected = props.selectedColor === colorName;
+          const isSelected = selectedColor === colorName;
           const borderBlack = isSelected ? "border-black" : null;
 
           return (
@@ -22,7 +22,7 @@ const ChooseColor: FC<IProps> = (props: any) => {
               htmlFor={colorName}
               className={`border p-2 text-center ${borderBlack}`}
               style={{
-                backgroundColor: color.bg,
+                backgroundColor: color.bgColor,
                 color: color.fontColor,
               }}
             >
@@ -32,8 +32,9 @@ const ChooseColor: FC<IProps> = (props: any) => {
                 value={colorName}
                 id={colorName}
                 className="hidden"
-                // checked={isSelected}
-                onChange={props.handleColor}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setSelectedColor(e.target.value)
+                }
                 aria-label="choose-color"
               />
               {colorName}
