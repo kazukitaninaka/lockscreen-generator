@@ -8,14 +8,14 @@ import Preview from "./components/Preview";
 // data
 import { colorData } from "./data/colorData";
 
-interface sizeI {
+type Size = {
   width: number;
   height: number;
-}
+};
 
 const App: FC = () => {
   const [img, setImg] = useState<string | null>(null);
-  const [size, setSize] = useState<sizeI>({ width: 828, height: 1792 });
+  const [size, setSize] = useState<Size>({ width: 828, height: 1792 });
   const [selectedColor, setSelectedColor] = useState<string>("basic");
   const [fontSize, setFontSize] = useState<number>(50);
   const [content, setContent] = useState<string>("");
