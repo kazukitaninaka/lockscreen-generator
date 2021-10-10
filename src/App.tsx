@@ -17,14 +17,6 @@ const App: FC = () => {
   const [content, setContent] = useState<string>("");
 
   useEffect(() => {
-    // // identify if user is using phone and set screen size
-    // if (window.navigator.userAgent.match(/(iPhone|iPod|Android.*Mobile)/i)) {
-    //   setSize({
-    //     width: window.screen.width * 2,
-    //     height: window.screen.height * 2,
-    //   });
-    // }
-
     const canvasElem = document.createElement("canvas");
     canvasElem.width = size.width;
     canvasElem.height = size.height;
