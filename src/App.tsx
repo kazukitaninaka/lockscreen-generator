@@ -7,27 +7,23 @@ import TextInput from "./components/TextInput";
 import Preview from "./components/Preview";
 // data
 import { colorData } from "./data/colorData";
-
-type Size = {
-  width: number;
-  height: number;
-};
+import useImageSize from "./hooks/useImageSize";
 
 const App: FC = () => {
   const [img, setImg] = useState<string | null>(null);
-  const [size, setSize] = useState<Size>({ width: 828, height: 1792 });
+  const size = useImageSize();
   const [selectedColor, setSelectedColor] = useState<string>("basic");
   const [fontSize, setFontSize] = useState<number>(50);
   const [content, setContent] = useState<string>("");
 
   useEffect(() => {
-    // identify if user is using phone and set screen size
-    if (window.navigator.userAgent.match(/(iPhone|iPod|Android.*Mobile)/i)) {
-      setSize({
-        width: window.screen.width * 2,
-        height: window.screen.height * 2,
-      });
-    }
+    // // identify if user is using phone and set screen size
+    // if (window.navigator.userAgent.match(/(iPhone|iPod|Android.*Mobile)/i)) {
+    //   setSize({
+    //     width: window.screen.width * 2,
+    //     height: window.screen.height * 2,
+    //   });
+    // }
 
     const canvasElem = document.createElement("canvas");
     canvasElem.width = size.width;
