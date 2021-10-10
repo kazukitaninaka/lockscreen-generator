@@ -1,13 +1,12 @@
-import React, { FC } from "react";
+import React, { Dispatch, FC, SetStateAction } from "react";
 import ModifyFontSize from "./ModifyFontSize";
 
 type Props = {
-  increaseFontSize: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  decreaseFontSize: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  setFontSize: Dispatch<SetStateAction<number>>;
   fontSize: number;
   img: string | null;
 };
-const Preview: FC<Props> = (props) => {
+const Preview: FC<Props> = ({ setFontSize, fontSize, img }) => {
   return (
     <div>
       <div className="grid grid-cols-2 gap-x-24">
@@ -15,13 +14,9 @@ const Preview: FC<Props> = (props) => {
           <div className="font-mono mb-2 text-2xl">Preview↓</div>
           <div className="font-mono">(長押しで保存)</div>
         </div>
-        <ModifyFontSize
-          increaseFontSize={props.increaseFontSize}
-          decreaseFontSize={props.decreaseFontSize}
-          fontSize={props.fontSize}
-        />
+        <ModifyFontSize setFontSize={setFontSize} fontSize={fontSize} />
       </div>
-      {props.img ? <img alt="icon" src={props.img} /> : null}
+      {img && <img alt="icon" src={img} />}
     </div>
   );
 };

@@ -54,34 +54,16 @@ const App: FC = () => {
     setImg(canvasElm.toDataURL());
   }, [selectedColor, fontSize, content]);
 
-  const handleTextarea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
-  };
-
-  const handleColor = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedColor(e.target.value);
-  };
-
-  // handle font size
-  const increaseFontSize = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setFontSize((prev) => prev + 1);
-  };
-  const decreaseFontSize = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setFontSize((prev) => prev - 1);
-  };
-
   return (
     <div className="grid gap-y-4">
       <Header />
       <div id="container" className="container-sm mx-auto px-1 grid gap-y-4">
-        <ChooseColor handleColor={handleColor} selectedColor={selectedColor} />
-        <TextInput handleTextarea={handleTextarea} content={content} />
-        <Preview
-          increaseFontSize={increaseFontSize}
-          decreaseFontSize={decreaseFontSize}
-          fontSize={fontSize}
-          img={img}
+        <ChooseColor
+          setSelectedColor={setSelectedColor}
+          selectedColor={selectedColor}
         />
+        <TextInput setContent={setContent} content={content} />
+        <Preview setFontSize={setFontSize} fontSize={fontSize} img={img} />
       </div>
       <Footer />
     </div>

@@ -1,21 +1,23 @@
-import React, { FC } from "react";
+import React, { Dispatch, FC, SetStateAction } from "react";
 
 type Props = {
-  handleTextarea: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  setContent: Dispatch<SetStateAction<string>>;
   content: string;
 };
 
-const TextInput: FC<Props> = (props) => {
+const TextInput: FC<Props> = ({ setContent, content }) => {
   return (
-    <div>
+    <>
       <div className="font-mono text-2xl mb-2 mx-3">Text↓</div>
       <textarea
-        onChange={props.handleTextarea}
+        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+          setContent(e.target.value)
+        }
         className="border w-full h-40"
         cols={20}
-        value={props.content}
+        value={content}
       ></textarea>
-    </div>
+    </>
   );
 };
 
