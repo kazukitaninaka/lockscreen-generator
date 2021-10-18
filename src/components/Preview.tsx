@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 import ModifyFontSize from "./ModifyFontSize";
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 };
 const Preview: FC<Props> = ({ setFontSize, fontSize, img }) => {
   return (
-    <div>
+    <>
       <div className="grid grid-cols-2 gap-x-24">
         <div className="mx-3">
           <div className="font-mono mb-2 text-2xl">Preview↓</div>
@@ -17,7 +17,7 @@ const Preview: FC<Props> = ({ setFontSize, fontSize, img }) => {
         <ModifyFontSize setFontSize={setFontSize} fontSize={fontSize} />
       </div>
       {img && <img alt="icon" src={img} />}
-    </div>
+    </>
   );
 };
 
